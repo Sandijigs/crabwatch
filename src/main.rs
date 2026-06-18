@@ -44,7 +44,7 @@ enum Command {
 fn main() -> Result<()> {
     let cli = Cli::parse();
     match cli.command {
-        Command::Analyze { repo: repo_arg, org, check } => {
+        Command::Analyze { repo: repo_arg, org: _, check: _ } => {
             if let Some(repo_arg) = repo_arg {
                 let parts: Vec<&str> = repo_arg.split('/').collect();
                 if parts.len() != 2 || parts[0].is_empty() || parts[1].is_empty() {
