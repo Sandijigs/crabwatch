@@ -1,4 +1,4 @@
-use anyhow::{Context, bail};
+use anyhow::bail;
 use std::path::{Path, PathBuf};
 
 #[derive(Debug, PartialEq)]
@@ -18,15 +18,12 @@ pub fn parse_repo(input: &str) -> anyhow::Result<ParsedRepo> {
     })
 }
 
-pub fn cache_path(repo: &ParsedRepo, cache_dir_override: Option<&Path>) -> anyhow::Result<PathBuf> {
+pub fn cache_path(repo: &ParsedRepo, cache_dir_override: Option<&Path>) -> Option<PathBuf> {
     let base = match cache_dir_override {
         Some(path) => path.to_path_buf(),
-        None => {
-            let home = dirs::home_dir().context("could not find home directory")?;
-            home.join(".crabwatch")
-        }
+        None => dirs::cache_dir()?.join("crabwatch"),
     };
-    Ok(base.join("repos").join(&repo.org).join(&repo.repo))
+    Some(base.join("repos").join(&repo.org).join(&repo.repo))
 }
 
 pub fn run(
@@ -36,8 +33,12 @@ pub fn run(
 ) -> anyhow::Result<()> {
     if let Some(repo_arg) = repo_arg {
         let parsed = parse_repo(&repo_arg)?;
-        let path = cache_path(&parsed, cache_dir_override)?;
-        println!("cache path: {}", path.display());
+        match cache_path(&parsed, cache_dir_override) {
+            Some(path) => println!("cache path: {}", path.display()),
+            None => eprintln!(
+                "warning: could not determine a cache directory; results will not be cached"
+            ),
+        }
     } else if org_arg.is_some() {
         bail!("--org is not yet supported");
     }
@@ -80,15 +81,15 @@ mod tests {
         assert!(parse_repo("a/b/c").is_err());
     }
     #[test]
-    fn cache_path_default_uses_home() {
+    fn cache_path_default_uses_cache_dir() {
         let repo = ParsedRepo {
             org: "rust-lang".to_string(),
             repo: "crabwatch".to_string(),
         };
         let path = cache_path(&repo, None).unwrap();
-        let expected = dirs::home_dir()
+        let expected = dirs::cache_dir()
             .unwrap()
-            .join(".crabwatch")
+            .join("crabwatch")
             .join("repos")
             .join("rust-lang")
             .join("crabwatch");
