@@ -32,7 +32,10 @@ pub async fn fetch_head_commit(
         .context("failed to parse GraphQL response from GitHub")?;
 
     if let Some(errors) = &response.errors {
-        bail!("GitHub GraphQL API returned errors: {errors}");
+        bail!(
+            "GitHub GraphQL API returned errors: {}",
+            serde_json::to_string(errors).unwrap_or_default()
+        );
     }
 
     response
@@ -43,7 +46,7 @@ pub async fn fetch_head_commit(
 #[derive(Deserialize)]
 struct GraphQlResponse {
     data: Option<GraphQlData>,
-    errors: Option<serde_json::Value>,
+    errors: Option<Vec<serde_json::Value>>,
 }
 
 impl GraphQlResponse {
