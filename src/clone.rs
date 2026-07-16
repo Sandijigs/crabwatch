@@ -28,6 +28,9 @@ pub fn clone_repo(
         .context("failed to run git clone")?;
 
     if !output.status.success() {
+        if !output.stdout.is_empty() {
+            eprintln!("{}", String::from_utf8_lossy(&output.stdout));
+        }
         if !output.stderr.is_empty() {
             eprintln!("{}", String::from_utf8_lossy(&output.stderr));
         }
