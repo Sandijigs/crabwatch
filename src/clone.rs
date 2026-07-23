@@ -1,8 +1,8 @@
 use anyhow::{Context as _, bail};
 use std::path::Path;
-use std::process::Command;
+use tokio::process::Command;
 
-pub fn clone_repo(
+pub async fn clone_repo(
     org: &str,
     repo: &str,
     final_dest: &Path,
@@ -25,6 +25,7 @@ pub fn clone_repo(
         .arg(&url)
         .arg(&temp_dest)
         .output()
+        .await
         .context("failed to run git clone")?;
 
     if !output.status.success() {
@@ -38,7 +39,8 @@ pub fn clone_repo(
         bail!("git clone failed for {org}/{repo} ({})", output.status);
     }
 
-    let actual_sha = head_sha(&temp_dest)?;
+    let actual_sha = head_sha(&temp_dest).await?;
+
     if actual_sha != expected_sha {
         let _ = std::fs::remove_dir_all(&temp_dest);
         bail!(
@@ -53,7 +55,7 @@ pub fn clone_repo(
     Ok(())
 }
 
-fn head_sha(repo_path: &Path) -> anyhow::Result<String> {
+async fn head_sha(repo_path: &Path) -> anyhow::Result<String> {
     let output = Command::new("git")
         .arg("-C")
         .arg(repo_path)
@@ -61,6 +63,7 @@ fn head_sha(repo_path: &Path) -> anyhow::Result<String> {
         .arg("--verify")
         .arg("HEAD^{commit}")
         .output()
+        .await
         .context("failed to run git rev-parse")?;
 
     if !output.status.success() {

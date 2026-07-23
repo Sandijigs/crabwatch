@@ -1,7 +1,7 @@
 use anyhow::{Context as _, bail};
 use std::io::ErrorKind;
 use std::path::{Path, PathBuf};
-use std::process::Command;
+use tokio::process::Command;
 
 const ZIZMOR_CONFIG: &str = include_str!("../zizmor-default.yml");
 const ZIZMOR_CONFIG_FILE: &str = "zizmor-default.yml";
@@ -17,7 +17,7 @@ fn zizmor_command(repo_path: &Path, config_path: &Path, github_token: &str) -> C
     command
 }
 
-fn sync_zizmor_config(crabwatch_dir: &Path) -> anyhow::Result<PathBuf> {
+pub(crate) fn sync_zizmor_config(crabwatch_dir: &Path) -> anyhow::Result<PathBuf> {
     let config_path = crabwatch_dir.join(ZIZMOR_CONFIG_FILE);
 
     match std::fs::read(&config_path) {
@@ -41,28 +41,39 @@ fn sync_zizmor_config(crabwatch_dir: &Path) -> anyhow::Result<PathBuf> {
     Ok(config_path)
 }
 
-pub fn scan_workflows(
+pub async fn scan_workflows(
     repo_path: &Path,
     crabwatch_dir: &Path,
     github_token: &str,
-) -> anyhow::Result<()> {
+) -> anyhow::Result<String> {
     let config_path = sync_zizmor_config(crabwatch_dir)?;
 
-    let status = zizmor_command(repo_path, &config_path, github_token).status();
+    let output = zizmor_command(repo_path, &config_path, github_token)
+        .output()
+        .await;
 
-    let status = match status {
-        Ok(status) => status,
+    let output = match output {
+        Ok(output) => output,
         Err(err) if err.kind() == ErrorKind::NotFound => {
             bail!("zizmor is not installed; see https://docs.zizmor.sh/installation/");
         }
         Err(err) => return Err(err).context("failed to run zizmor"),
     };
 
-    if !status.success() {
-        bail!("zizmor failed ({status})");
+    // Exit code 3 means zizmor found no auditable inputs (a repo with no
+    // workflows). That is not a failure, there is just nothing to scan.
+    if output.status.code() == Some(3) {
+        return Ok("no workflows to scan".to_string());
     }
 
-    Ok(())
+    if !output.status.success() {
+        bail!("zizmor failed ({})", output.status);
+    }
+
+    let mut combined = String::new();
+    combined.push_str(&String::from_utf8_lossy(&output.stderr));
+    combined.push_str(&String::from_utf8_lossy(&output.stdout));
+    Ok(combined)
 }
 
 #[cfg(test)]
