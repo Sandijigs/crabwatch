@@ -4,6 +4,8 @@
 # zizmor has no allow-list, so we need to explicitly disable every audit we don't want to run.
 rules:
   # Enabled
+  adhoc-packages:
+    disable: false
   bot-conditions:
     disable: false
   dependabot-execution:
@@ -30,8 +32,6 @@ rules:
     disable: false
 
   # Disabled
-  adhoc-packages:
-    disable: true
   anonymous-definition:
     # Disabled because it doesn't have a security impact.
     disable: true
