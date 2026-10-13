@@ -128,6 +128,12 @@ repositories:
         disable: true
   rust-lang/libz-sys:
     rules:
+      ref-version-mismatch:
+        disable: false
+      stale-action-refs:
+        disable: false
+      unpinned-uses:
+        disable: false
       # TODO
       use-trusted-publishing:
         disable: true
@@ -229,6 +235,14 @@ repositories:
       unpinned-uses:
         disable: false
   rust-lang/a-mir-formality:
+    rules:
+      ref-version-mismatch:
+        disable: false
+      stale-action-refs:
+        disable: false
+      unpinned-uses:
+        disable: false
+  rust-lang/stdarch:
     rules:
       ref-version-mismatch:
         disable: false
