@@ -132,6 +132,8 @@ repositories:
         disable: false
       stale-action-refs:
         disable: false
+      unpinned-uses:
+        disable: false
       # TODO
       use-trusted-publishing:
         disable: true
