@@ -69,6 +69,7 @@ default:
       disable: true
     dependabot-cooldown:
       # Repositories using Dependabot cooldowns should enable this audit
+      # if the default cooldown period of 3 days isn't enough.
       disable: true
     excessive-permissions:
       disable: true
