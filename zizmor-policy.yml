@@ -137,6 +137,8 @@ repositories:
         disable: true
   rust-lang/rust-analyzer:
     rules:
+      ref-version-mismatch:
+        disable: false
       cache-poisoning:
         # TODO
         disable: true
