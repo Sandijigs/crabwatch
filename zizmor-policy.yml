@@ -256,3 +256,21 @@ repositories:
         disable: false
       unpinned-uses:
         disable: false
+  rust-lang/rust-forge:
+    rules:
+      ref-version-mismatch:
+        disable: false
+      stale-action-refs:
+        disable: false
+      unpinned-uses:
+        disable: false
+  rust-lang/rustc-hash:
+    rules:
+      ref-version-mismatch:
+        disable: false
+      stale-action-refs:
+        disable: false
+      superfluous-actions:
+        disable: false
+      unpinned-uses:
+        disable: false
