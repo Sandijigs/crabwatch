@@ -44,23 +44,21 @@ jobs:
             -H "Accept: application/vnd.github.raw+json" > "$RUNNER_TEMP/zizmor-policy.yml"
 
           # Apply this repository's overrides to the default configuration.
-          # zizmor-action runs zizmor in a container that mounts only the
-          # workspace, so the config must be written inside it.
           yq --exit-status \
             '.default * (.repositories[strenv(GITHUB_REPOSITORY)] // {})' \
-            "$RUNNER_TEMP/zizmor-policy.yml" > crabwatch-zizmor.yml
+            "$RUNNER_TEMP/zizmor-policy.yml" > "$RUNNER_TEMP/crabwatch-zizmor.yml"
 
           echo "::group::Effective zizmor configuration for $GITHUB_REPOSITORY"
-          cat crabwatch-zizmor.yml
+          cat "$RUNNER_TEMP/crabwatch-zizmor.yml"
           echo "::endgroup::"
 
       - name: Run zizmor
         # A missing or empty root .github directory has nothing to audit.
         if: ${{ hashFiles('.github/**') != '' }}
-        uses: zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482 # v0.6.4
+        uses: zizmorcore/zizmor-action@f9597c869b2e67095f9b527070297a13a6efe928 # v0.7.0
         with:
           advanced-security: false
-          config: crabwatch-zizmor.yml
+          config: ${{ runner.temp }}/crabwatch-zizmor.yml
           # Only lint the root .github directory.
           # Ignore nested .github directories because they can belong to
           # vendored projects or test fixtures.
