@@ -272,3 +272,5 @@ repositories:
         disable: false
       superfluous-actions:
         disable: false
+      unpinned-uses:
+        disable: false
