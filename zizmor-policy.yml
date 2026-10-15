@@ -248,3 +248,11 @@ repositories:
         disable: false
       unpinned-uses:
         disable: false
+  rust-lang/rustup-components-history:
+    rules:
+      ref-version-mismatch:
+        disable: false
+      stale-action-refs:
+        disable: false
+      unpinned-uses:
+        disable: false
