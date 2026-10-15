@@ -139,6 +139,8 @@ repositories:
     rules:
       ref-version-mismatch:
         disable: false
+      stale-action-refs:
+        disable: false
       cache-poisoning:
         # TODO
         disable: true
