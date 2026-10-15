@@ -256,3 +256,7 @@ repositories:
         disable: false
       unpinned-uses:
         disable: false
+  rust-lang/rust-forge:
+    rules:
+      ref-version-mismatch:
+        disable: false
