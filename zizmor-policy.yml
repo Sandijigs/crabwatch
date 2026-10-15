@@ -202,6 +202,8 @@ repositories:
         disable: false
       ref-version-mismatch:
         disable: false
+      self-repository:
+        disable: false
       stale-action-refs:
         disable: false
       superfluous-actions:

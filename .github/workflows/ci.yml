@@ -23,7 +23,7 @@ jobs:
           persist-credentials: false
 
       - name: Setup Rust
-        uses: ./.github/actions/setup-rust
+        uses: $/.github/actions/setup-rust
         with:
           components: rustfmt clippy
 
@@ -82,7 +82,7 @@ jobs:
           persist-credentials: false
 
       - name: Run zizmor
-        uses: zizmorcore/zizmor-action@b1d7e1fb5de872772f31590499237e7cce841e8e # v0.5.3
+        uses: zizmorcore/zizmor-action@f9597c869b2e67095f9b527070297a13a6efe928 # v0.7.0
         with:
           persona: pedantic
           advanced-security: false
