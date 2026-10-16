@@ -8,6 +8,8 @@ default:
   # Configuration shared by every repository.
   rules:
     # Enabled
+    adhoc-packages:
+      disable: false
     archived-uses:
       disable: false
     bot-conditions:
@@ -58,8 +60,6 @@ default:
       disable: false
 
     # Disabled
-    adhoc-packages:
-      disable: true
     anonymous-definition:
       # Disabled because it doesn't have a security impact.
       disable: true
@@ -110,6 +110,8 @@ repositories:
     # Chalk is unused at the moment and it's going to be archived soon probably.
     # Fixing lints it's not worth it.
     rules:
+      adhoc-packages:
+        disable: true
       archived-uses:
         disable: true
       use-trusted-publishing:
@@ -181,6 +183,9 @@ repositories:
         disable: true
   rust-lang/rust-clippy:
     rules:
+      adhoc-packages:
+        # TODO: remark.yml installs npm packages outside of a lockfile.
+        disable: true
       cache-poisoning:
         # TODO
         disable: true
@@ -195,8 +200,6 @@ repositories:
   rust-lang/crabwatch:
     # Opt in to the disabled audits that pass for this repository.
     rules:
-      adhoc-packages:
-        disable: false
       anonymous-definition:
         disable: false
       artipacked:
@@ -229,8 +232,6 @@ repositories:
         disable: false
   rust-lang/josh-sync:
     rules:
-      adhoc-packages:
-        disable: false
       ref-version-mismatch:
         disable: false
       self-repository:
