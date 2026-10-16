@@ -14,6 +14,8 @@ default:
       disable: false
     cache-poisoning:
       disable: false
+    dangerous-triggers:
+      disable: false
     dependabot-execution:
       disable: false
     github-env:
@@ -64,8 +66,6 @@ default:
     artipacked:
       disable: true
     concurrency-limits:
-      disable: true
-    dangerous-triggers:
       disable: true
     dependabot-cooldown:
       # Repositories using Dependabot cooldowns should enable this audit
@@ -151,6 +151,10 @@ repositories:
         disable: true
   rust-lang/rust-bindgen:
     rules:
+      dangerous-triggers:
+        # publish.yml runs on workflow_run after Release, which also runs for PRs.
+        # The workflow is currently disabled manually (someone turned it off using the "Disable workflow" option in the Actions tab).
+        disable: true
       # TODO
       use-trusted-publishing:
         disable: true
@@ -180,6 +184,9 @@ repositories:
       cache-poisoning:
         # TODO
         disable: true
+      dangerous-triggers:
+        # Existing workflow_run trigger for lintcheck summary comments.
+        disable: true
   rust-lang/rustup:
     rules:
       cache-poisoning:
@@ -195,8 +202,6 @@ repositories:
       artipacked:
         disable: false
       concurrency-limits:
-        disable: false
-      dangerous-triggers:
         disable: false
       dependabot-cooldown:
         disable: false
@@ -225,8 +230,6 @@ repositories:
   rust-lang/josh-sync:
     rules:
       adhoc-packages:
-        disable: false
-      dangerous-triggers:
         disable: false
       ref-version-mismatch:
         disable: false
@@ -282,3 +285,18 @@ repositories:
         disable: false
       unpinned-uses:
         disable: false
+  rust-lang/docs.rs:
+    rules:
+      dangerous-triggers:
+        # Existing pull_request_target triggers for PR labels and post-merge automation.
+        disable: true
+  rust-lang/team:
+    rules:
+      dangerous-triggers:
+        # Existing workflow_run trigger for sync-team dry runs.
+        disable: true
+  rust-lang/this-week-in-rust:
+    rules:
+      dangerous-triggers:
+        # Existing workflow_run trigger for PR check comments.
+        disable: true
