@@ -328,3 +328,7 @@ repositories:
       self-repository:
         # TODO
         disable: true
+  rust-lang/ar_archive_writer:
+    rules:
+      artipacked:
+        disable: false
