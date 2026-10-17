@@ -44,6 +44,8 @@ default:
       disable: false
     self-hosted-runner:
       disable: false
+    self-repository:
+      disable: false
     typosquat-uses:
       disable: false
     unpinned-tools:
@@ -83,8 +85,6 @@ default:
     secrets-outside-env:
       # TODO: This lint requires the auditor persona,
       # while crabwatch uses the pedantic persona.
-      disable: true
-    self-repository:
       disable: true
     stale-action-refs:
       disable: true
@@ -172,6 +172,9 @@ repositories:
         disable: true
       ref-version-mismatch:
         disable: false
+      self-repository:
+        # TODO
+        disable: true
       stale-action-refs:
         disable: false
       unpinned-uses:
@@ -216,8 +219,6 @@ repositories:
         disable: false
       ref-version-mismatch:
         disable: false
-      self-repository:
-        disable: false
       stale-action-refs:
         disable: false
       superfluous-actions:
@@ -233,8 +234,6 @@ repositories:
   rust-lang/josh-sync:
     rules:
       ref-version-mismatch:
-        disable: false
-      self-repository:
         disable: false
       stale-action-refs:
         disable: false
@@ -291,6 +290,9 @@ repositories:
       dangerous-triggers:
         # Existing pull_request_target triggers for PR labels and post-merge automation.
         disable: true
+      self-repository:
+        # TODO
+        disable: true
   rust-lang/team:
     rules:
       dangerous-triggers:
@@ -300,4 +302,29 @@ repositories:
     rules:
       dangerous-triggers:
         # Existing workflow_run trigger for PR check comments.
+        disable: true
+  rust-lang/bors:
+    rules:
+      self-repository:
+        # TODO
+        disable: true
+  rust-lang/crates-io-auth-action:
+    rules:
+      self-repository:
+        # TODO
+        disable: true
+  rust-lang/miri:
+    rules:
+      self-repository:
+        # TODO
+        disable: true
+  rust-lang/rust-playground:
+    rules:
+      self-repository:
+        # TODO
+        disable: true
+  rust-lang/rustc_codegen_gcc:
+    rules:
+      self-repository:
+        # TODO
         disable: true
