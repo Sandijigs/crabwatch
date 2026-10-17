@@ -356,3 +356,5 @@ repositories:
     rules:
       artipacked:
         disable: false
+      concurrency-limits:
+        disable: false
