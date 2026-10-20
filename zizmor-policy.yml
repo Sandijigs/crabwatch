@@ -376,3 +376,27 @@ repositories:
         disable: false
       unpinned-uses:
         disable: false
+  rust-lang/async-book:
+    rules:
+      artipacked:
+        disable: false
+      concurrency-limits:
+        disable: false
+      excessive-permissions:
+        disable: false
+      github-app:
+        disable: false
+      ref-version-mismatch:
+        disable: false
+      stale-action-refs:
+        disable: false
+      superfluous-actions:
+        disable: false
+      template-injection:
+        disable: false
+      undocumented-permissions:
+        disable: false
+      unpinned-images:
+        disable: false
+      unpinned-uses:
+        disable: false
