@@ -302,6 +302,8 @@ repositories:
     rules:
       artipacked:
         disable: false
+      github-app:
+        disable: false
       dangerous-triggers:
         # Existing workflow_run trigger for PR check comments.
         disable: true
