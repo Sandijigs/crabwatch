@@ -114,18 +114,6 @@ repositories:
         disable: true
       archived-uses:
         disable: true
-      use-trusted-publishing:
-        disable: true
-  rust-lang/mdBook:
-    # Blocked by https://github.com/rust-lang/mdBook/pull/3232
-    rules:
-      ref-confusion:
-        disable: true
-  rust-lang/cargo-bisect-rustc:
-    rules:
-      # TODO
-      use-trusted-publishing:
-        disable: true
   rust-lang/libz-sys:
     rules:
       ref-version-mismatch:
@@ -147,9 +135,6 @@ repositories:
         disable: false
       cache-poisoning:
         # TODO
-        disable: true
-      # TODO
-      use-trusted-publishing:
         disable: true
   rust-lang/rust-bindgen:
     rules:
@@ -304,11 +289,6 @@ repositories:
         # Existing workflow_run trigger for PR check comments.
         disable: true
   rust-lang/bors:
-    rules:
-      self-repository:
-        # TODO
-        disable: true
-  rust-lang/crates-io-auth-action:
     rules:
       self-repository:
         # TODO
