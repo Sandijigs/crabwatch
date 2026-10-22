@@ -312,6 +312,8 @@ repositories:
         disable: false
       unpinned-images:
         disable: false
+      unpinned-uses:
+        disable: false
       dangerous-triggers:
         # Existing workflow_run trigger for PR check comments.
         disable: true
