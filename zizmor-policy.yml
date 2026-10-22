@@ -285,6 +285,20 @@ repositories:
         disable: true
   rust-lang/this-week-in-rust:
     rules:
+      artipacked:
+        disable: false
+      github-app:
+        disable: false
+      ref-version-mismatch:
+        disable: false
+      stale-action-refs:
+        disable: false
+      superfluous-actions:
+        disable: false
+      unpinned-images:
+        disable: false
+      unpinned-uses:
+        disable: false
       dangerous-triggers:
         # Existing workflow_run trigger for PR check comments.
         disable: true
