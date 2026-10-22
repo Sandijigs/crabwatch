@@ -308,6 +308,8 @@ repositories:
         disable: false
       stale-action-refs:
         disable: false
+      superfluous-actions:
+        disable: false
       dangerous-triggers:
         # Existing workflow_run trigger for PR check comments.
         disable: true
