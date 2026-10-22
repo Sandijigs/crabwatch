@@ -306,6 +306,8 @@ repositories:
         disable: false
       ref-version-mismatch:
         disable: false
+      stale-action-refs:
+        disable: false
       dangerous-triggers:
         # Existing workflow_run trigger for PR check comments.
         disable: true
