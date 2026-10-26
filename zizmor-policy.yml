@@ -436,3 +436,5 @@ repositories:
         disable: false
       unpinned-images:
         disable: false
+      unpinned-uses:
+        disable: false
