@@ -432,3 +432,5 @@ repositories:
         disable: false
       template-injection:
         disable: false
+      undocumented-permissions:
+        disable: false
