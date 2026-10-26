@@ -434,3 +434,5 @@ repositories:
         disable: false
       undocumented-permissions:
         disable: false
+      unpinned-images:
+        disable: false
