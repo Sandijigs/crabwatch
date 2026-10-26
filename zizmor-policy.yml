@@ -426,3 +426,5 @@ repositories:
         disable: false
       ref-version-mismatch:
         disable: false
+      stale-action-refs:
+        disable: false
