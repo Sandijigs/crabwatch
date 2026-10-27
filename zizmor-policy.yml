@@ -199,6 +199,8 @@ repositories:
     rules:
       artipacked:
         disable: false
+      excessive-permissions:
+        disable: false
       cache-poisoning:
         # TODO
         disable: true
