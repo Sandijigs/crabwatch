@@ -111,6 +111,8 @@ repositories:
         disable: false
       ref-version-mismatch:
         disable: false
+      stale-action-refs:
+        disable: false
       # TODO
       unsound-ternary:
         disable: true
