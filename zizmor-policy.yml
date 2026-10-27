@@ -192,6 +192,8 @@ repositories:
         disable: false
       github-app:
         disable: false
+      ref-version-mismatch:
+        disable: false
       cache-poisoning:
         # TODO
         disable: true
