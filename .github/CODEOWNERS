@@ -1,2 +1,3 @@
 # Modifying these files requires admin approval.
 /.github/workflows/crabwatch.yml    @rust-lang/infra-admins
+/.github/CODEOWNERS    @rust-lang/infra-admins
