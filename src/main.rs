@@ -39,10 +39,6 @@ enum Command {
         /// Analyze every repository in an organization
         #[arg(long)]
         org: Option<String>,
-
-        /// Specific check to run (runs all if omitted)
-        #[arg(long)]
-        check: Option<String>,
     },
 }
 
@@ -82,11 +78,7 @@ async fn main() -> anyhow::Result<()> {
         .context("a GitHub token is required (--github-token or GITHUB_TOKEN env var)")?;
 
     match cli.command {
-        Command::Analyze {
-            repo,
-            org,
-            check: _,
-        } => {
+        Command::Analyze { repo, org } => {
             command::analyze::run(&github_token, repo, org, cli.cache_dir.as_deref()).await?;
         }
     }
