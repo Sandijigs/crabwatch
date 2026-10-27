@@ -198,6 +198,8 @@ repositories:
         disable: false
       superfluous-actions:
         disable: false
+      template-injection:
+        disable: false
       cache-poisoning:
         # TODO
         disable: true
