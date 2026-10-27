@@ -197,6 +197,8 @@ repositories:
         disable: true
   rust-lang/rustup:
     rules:
+      artipacked:
+        disable: false
       cache-poisoning:
         # TODO
         disable: true
