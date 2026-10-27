@@ -103,6 +103,8 @@ repositories:
   # Override `default` in specific repositories.
   rust-lang/backtrace-rs:
     rules:
+      artipacked:
+        disable: false
       # TODO
       unsound-ternary:
         disable: true
