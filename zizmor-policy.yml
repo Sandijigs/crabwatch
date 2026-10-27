@@ -115,6 +115,8 @@ repositories:
         disable: false
       superfluous-actions:
         disable: false
+      undocumented-permissions:
+        disable: false
       # TODO
       unsound-ternary:
         disable: true
