@@ -186,6 +186,8 @@ repositories:
         disable: true
   rust-lang/rust-clippy:
     rules:
+      artipacked:
+        disable: false
       cache-poisoning:
         # TODO
         disable: true
