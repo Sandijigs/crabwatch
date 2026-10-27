@@ -103,9 +103,24 @@ repositories:
   # Override `default` in specific repositories.
   rust-lang/backtrace-rs:
     rules:
-      # TODO
-      unsound-ternary:
-        disable: true
+      artipacked:
+        disable: false
+      excessive-permissions:
+        disable: false
+      github-app:
+        disable: false
+      ref-version-mismatch:
+        disable: false
+      stale-action-refs:
+        disable: false
+      superfluous-actions:
+        disable: false
+      undocumented-permissions:
+        disable: false
+      unpinned-images:
+        disable: false
+      unpinned-uses:
+        disable: false
   rust-lang/chalk:
     # Chalk is unused at the moment and it's going to be archived soon probably.
     # Fixing lints it's not worth it.
@@ -435,6 +450,14 @@ repositories:
       undocumented-permissions:
         disable: false
       unpinned-images:
+        disable: false
+      unpinned-uses:
+        disable: false
+  rust-lang/compiler-builtins:
+    rules:
+      ref-version-mismatch:
+        disable: false
+      stale-action-refs:
         disable: false
       unpinned-uses:
         disable: false
