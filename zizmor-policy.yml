@@ -121,9 +121,6 @@ repositories:
         disable: false
       unpinned-uses:
         disable: false
-      # TODO
-      unsound-ternary:
-        disable: true
   rust-lang/chalk:
     # Chalk is unused at the moment and it's going to be archived soon probably.
     # Fixing lints it's not worth it.
