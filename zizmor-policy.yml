@@ -186,9 +186,6 @@ repositories:
         disable: true
   rust-lang/rust-clippy:
     rules:
-      adhoc-packages:
-        # TODO: remark.yml installs npm packages outside of a lockfile.
-        disable: true
       cache-poisoning:
         # TODO
         disable: true
