@@ -117,6 +117,8 @@ repositories:
         disable: false
       undocumented-permissions:
         disable: false
+      unpinned-images:
+        disable: false
       # TODO
       unsound-ternary:
         disable: true
