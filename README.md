@@ -108,3 +108,6 @@ To check what zizmor lints fail for your repository:
 4. Once fixed, open a PR in this repository to enable the lints you solved, so that
    if they are re-introduced in the future, crabwatch will catch them. Example
    [here](https://github.com/rust-lang/crabwatch/blob/4630d36d74262fbcbed9c42861737343db167eed/zizmor-policy.yml#L178).
+
+Pull requests to fix zizmor findings are tracked in the
+[t-crabwatch policy expansion GitHub Project](https://github.com/orgs/rust-lang/projects/81).
