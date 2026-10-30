@@ -526,3 +526,5 @@ repositories:
         disable: false
       excessive-permissions:
         disable: false
+      github-app:
+        disable: false
