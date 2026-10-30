@@ -115,3 +115,9 @@ To check what zizmor lints fail for your repository:
 
 Pull requests to fix zizmor findings are tracked in the
 [t-crabwatch policy expansion GitHub Project](https://github.com/orgs/rust-lang/projects/81).
+
+## About the team
+
+The crabwatch team is available in the
+[t-infra/crabwatch](https://rust-lang.zulipchat.com/#narrow/channel/650096-t-infra.2Fcrabwatch)
+Zulip channel.
