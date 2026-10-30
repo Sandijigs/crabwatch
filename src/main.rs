@@ -39,6 +39,12 @@ enum Command {
         /// Analyze every repository in an organization
         #[arg(long)]
         org: Option<String>,
+
+        /// Hide the names, zizmor output and errors of private repositories,
+        /// and only count them. Meant for public logs, such as CI.
+        /// Debug logs (`CRABWATCH_LOG=debug`) can still show their names.
+        #[arg(long, conflicts_with = "repo")]
+        redact_private: bool,
     },
 }
 
@@ -78,8 +84,19 @@ async fn main() -> anyhow::Result<()> {
         .context("a GitHub token is required (--github-token or GITHUB_TOKEN env var)")?;
 
     match cli.command {
-        Command::Analyze { repo, org } => {
-            command::analyze::run(&github_token, repo, org, cli.cache_dir.as_deref()).await?;
+        Command::Analyze {
+            repo,
+            org,
+            redact_private,
+        } => {
+            command::analyze::run(
+                &github_token,
+                repo,
+                org,
+                redact_private,
+                cli.cache_dir.as_deref(),
+            )
+            .await?;
         }
     }
     Ok(())
