@@ -68,6 +68,10 @@ default:
     artipacked:
       disable: true
     concurrency-limits:
+      # Disabled because:
+      # - sometimes it is too restrictive, and you might need to silence it
+      # - it doesn't affect security
+      # - it's too noisy
       disable: true
     dependabot-cooldown:
       # Repositories using Dependabot cooldowns should enable this audit
@@ -378,8 +382,6 @@ repositories:
     rules:
       artipacked:
         disable: false
-      concurrency-limits:
-        disable: false
       excessive-permissions:
         disable: false
       github-app:
@@ -402,8 +404,6 @@ repositories:
     rules:
       artipacked:
         disable: false
-      concurrency-limits:
-        disable: false
       excessive-permissions:
         disable: false
       github-app:
@@ -425,8 +425,6 @@ repositories:
   rust-lang/async-book:
     rules:
       artipacked:
-        disable: false
-      concurrency-limits:
         disable: false
       excessive-permissions:
         disable: false
