@@ -1,5 +1,5 @@
 use anyhow::{Context as _, bail};
-use std::io::ErrorKind;
+use std::io::{self, ErrorKind, IsTerminal as _};
 use std::path::{Path, PathBuf};
 use tokio::process::Command;
 
@@ -26,6 +26,9 @@ fn zizmor_command(github_path: &Path, config_path: &Path, github_token: &str) ->
         // Fail on GitHub workflow syntax error.
         .arg("--strict-collection")
         .arg(github_path);
+    if io::stdout().is_terminal() {
+        command.arg("--color=always").arg("--render-links=always");
+    }
     command
 }
 
